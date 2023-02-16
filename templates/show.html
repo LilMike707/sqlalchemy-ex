@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if user.img_url %}
-<img src="{{ user.img_url }}" alt="{{ user.full_name }}">
-{% endif %}
+<div>
+<!-- {% if user.img_url %} -->
+<img src= '{{ user.img_url }}' alt="You fucking suck at this"/>
+<p>{{user.img_url}}</p>
+</div>
+<!-- {% endif %} -->
 <h1>{{user.first_name}} {{user.last_name}}</h1>
 <form action="">
     <button formaction="/users/{{ user.id }}/edit" formmethod="GET">Edit This User</button>

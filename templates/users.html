@@ -2,9 +2,9 @@
 {% block content %}
 <h1>Current Users</h1>
 <ul>
-    {% for user in Users %}
+    {% for user in users %}
     <li>
-        <a href="/users/{{ user.id }}">{{ user.first_name }} {{user.last_name</a>
+        <a href="/users/{{ user.id }}">{{ user.first_name }} {{user.last_name}}</a>
     </li>
     {% endfor %}
 </ul>
