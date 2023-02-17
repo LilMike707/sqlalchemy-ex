@@ -2,14 +2,22 @@
 
 {% block content %}
 <div>
-<!-- {% if user.img_url %} -->
-<img src= '{{ user.img_url }}' alt="You fucking suck at this"/>
-<p>{{user.img_url}}</p>
+<img src= '{{ user.img_url }}' alt=""/>
 </div>
-<!-- {% endif %} -->
+
 <h1>{{user.first_name}} {{user.last_name}}</h1>
 <form action="">
     <button formaction="/users/{{ user.id }}/edit" formmethod="GET">Edit This User</button>
     <button formaction="/users/{{ user.id }}/delete" formmethod="POST">Delete This User</button>
+    <p><a href="{{user.id}}/posts/new">Add A New Post</a></p>
+    <hr>
+    <ul>
+        {% for post in user.posts %}
+            <li>
+                <a href="/posts/{{post.id}}">{{post.title}}</a>
+                <p>Created: {{post.created_at}}</p>
+            </li>
+        {% endfor %}
+    </ul>
 </form>
 {% endblock %}
