@@ -138,34 +138,34 @@ def show_tags():
     return render_template('tags.html', tags=tags)
 
 
+@app.route('/tags/new')
+def show_tag_form():
+    posts = Post.query.all()
+    return render_template('new_tag.html', posts = posts)
+
+
+# @app.route('/tags/new', methods=['POST'])
+# def add_tag():
+
+
 @app.route('/tags/<int:tag_id>')
 def show_tag_id(tag_id):
     posts =  Post.query.all()
     return render_template('new_tag.html', posts=posts)
 
 
-@app.route('/tags/new')
-def show_tag_form():
+# @app.route('/tags/<int:tag_id>/edit')
+# def show_edit_form(tag_id):
 
 
 
-@app.route('/tags/new', methods=['POST'])
-def add_tag():
+# @app.route('/tags/<int:tag_id>/edit', methods=['POST'])
+# def submit_edit_form(tag_id):
 
 
 
-@app.route('/tags/<int:tag_id>/edit')
-def show_edit_form(tag_id):
-
-
-
-@app.route('/tags/<int:tag_id>/edit', methods=['POST'])
-def submit_edit_form(tag_id):
-
-
-
-@app.route('/tags/<int:tag_id>/delete', methods=['POST'])
-def delete_tag():
+# @app.route('/tags/<int:tag_id>/delete', methods=['POST'])
+# def delete_tag():
 
 
 
