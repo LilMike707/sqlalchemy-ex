@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Crate Tag</h1>
+    <form action="" method="POST">
+        <p>Tag Name
+        <input type="text" placeholder="Enter New Tag" id="name" name="name"></p>
+
+    {% for post in posts %}
+        <input type="checkbox" value="{{post.id}}" id="post_{{post.id}}" name="posts">
+        {{post.title}}
+    {% endfor %}
+    </form>
+{% endblock %}
