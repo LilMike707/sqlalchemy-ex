@@ -1,7 +1,7 @@
 """Blogly application."""
 
 from flask import Flask, request, redirect, render_template
-from models import db, connect_db, User, Post
+from models import db, connect_db, User, Post, Tag, PostTag
 
 app = Flask(__name__)
 app.app_context().push()
@@ -130,3 +130,42 @@ def delete_post(post_id):
     db.session.commit()
 
     return redirect(f'/users/{post.user_id}')
+
+
+@app.route('/tags')
+def show_tags():
+    tags = Tag.query.all()
+    return render_template('tags.html', tags=tags)
+
+
+@app.route('/tags/<int:tag_id>')
+def show_tag_id(tag_id):
+    posts =  Post.query.all()
+    return render_template('new_tag.html', posts=posts)
+
+
+@app.route('/tags/new')
+def show_tag_form():
+
+
+
+@app.route('/tags/new', methods=['POST'])
+def add_tag():
+
+
+
+@app.route('/tags/<int:tag_id>/edit')
+def show_edit_form(tag_id):
+
+
+
+@app.route('/tags/<int:tag_id>/edit', methods=['POST'])
+def submit_edit_form(tag_id):
+
+
+
+@app.route('/tags/<int:tag_id>/delete', methods=['POST'])
+def delete_tag():
+
+
+

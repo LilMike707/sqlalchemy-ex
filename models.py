@@ -35,6 +35,17 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
 
+
+class PostTag(db.Model):
+
+    __tablename__ = 'posts_tags'
+
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True)
+
+
+
+
 class Tag(db.Model):
 
     __tablename__ = 'tags'
@@ -43,9 +54,3 @@ class Tag(db.Model):
     name = db.Column(db.Text, nullable=False)
 
 
-class PostTag(db.Model):
-
-    __tablename__ = 'post_tags'
-
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
-    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'))
