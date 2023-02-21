@@ -8,7 +8,13 @@
 
     {% for post in posts %}
         <input type="checkbox" value="{{post.id}}" id="post_{{post.id}}" name="posts">
-        {{post.title}}
+        <label for="post_{{post_id}}">
+            {{post.title}}
+        </label>    
     {% endfor %}
+
+    <a href="/tags">Cancel</a>
+    <button type="submit">Add Tag</button>
+
     </form>
 {% endblock %}
