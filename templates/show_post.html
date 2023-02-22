@@ -6,6 +6,14 @@
     <p>By: {{post.user.first_name}} {{post.user.last_name}}</p>
     <p>Created: {{post.created_at}}</p>
 
+    {% if post.tags %}
+        <p>
+            Tags: {% for tag in post.tags %}
+                <a href="/tags/{{tag.id}}">{{tag.name}}</a>
+            {% endfor %}
+        </p>
+    {% endif %}
+
     <form action="">
         <button formmethod="GET" formaction="/users/{{post.user_id}}">Cancel</button>
         <button formmethod="GET" formaction="/posts/{{post.id}}/edit">Edit</button>

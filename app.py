@@ -144,28 +144,53 @@ def show_tag_form():
     return render_template('new_tag.html', posts = posts)
 
 
-# @app.route('/tags/new', methods=['POST'])
-# def add_tag():
+@app.route('/tags/new', methods=['POST'])
+def add_tag():
 
+    post_ids = [int(num) for num in request.form.getlist('posts')]
+    posts = Post.query.filter(Post.id.in_(post_ids)).all()
+    new_tag = Tag(name=request.form['name'], posts = posts)
+
+    db.session.add(new_tag)
+    db.session.commit()
+
+    return redirect('/tags')
 
 @app.route('/tags/<int:tag_id>')
 def show_tag_id(tag_id):
-    posts =  Post.query.all()
-    return render_template('new_tag.html', posts=posts)
+    tag =  Tag.query.get_or_404(tag_id)
+    return render_template('show_tag.html', tag=tag)
 
 
-# @app.route('/tags/<int:tag_id>/edit')
-# def show_edit_form(tag_id):
+@app.route('/tags/<int:tag_id>/edit')
+def show_edit_form(tag_id):
+
+    tag = Tag.query.get_or_404(tag_id)
+    posts = Post.query.all()
+    return render_template('edit_tag.html', tag=tag, posts=posts)
 
 
+@app.route('/tags/<int:tag_id>/edit', methods=['POST'])
+def submit_edit_form(tag_id):
+    tag = Tag.query.get_or_404(tag_id)
+    tag.name = request.form['name']
+    post_ids = [int(num) for num in request.form.getlist("posts")]
+    tag.posts = Post.query.filter(Post.id.in_(post_ids)).all()  
 
-# @app.route('/tags/<int:tag_id>/edit', methods=['POST'])
-# def submit_edit_form(tag_id):
+    db.session.add(tag)
+    db.session.commit()
+
+    return redirect('/tags')
 
 
+@app.route('/tags/<int:tag_id>/delete', methods=['POST'])
+def delete_tag():
 
-# @app.route('/tags/<int:tag_id>/delete', methods=['POST'])
-# def delete_tag():
+    tag = Tag.query.get_or_404(tag_id)
+    db.session.delete(tag)
+    db.session.commit()
+
+    return redirect('/tags')
 
 
 

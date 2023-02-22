@@ -4,8 +4,9 @@
     <h1>Available Tags</h1>
     <ul>
     {% for tag in tags %}
-        <li><a href="/tags/{{tag.id}}">{{tag.id}}</a></li>
+        <li><a href="/tags/{{ tag.id }}">{{tag.name}}</a></li>
     {% endfor %}
     </ul>
     <p><a href="/tags/new">Create Tag</a></p>
+    <p><a href="/users">Users</a></p>
 {% endblock %}

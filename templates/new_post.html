@@ -8,5 +8,15 @@
         <textarea id="content" name="content"></textarea>
         <a href="/users/{{user.id}}">Cancel</a>
         <button type="submit">Add Post</button>
+
+        {% for tag in tags %}
+          <input type="checkbox"
+                 value="{{ tag.id }}"
+                 id="tag_{{ tag.id }}"
+                 name="tags">
+          <label for="tag_{{ tag.id }}">
+            {{ tag.name }}
+          </label>
+        {% endfor %}
     </form>
 {% endblock %}

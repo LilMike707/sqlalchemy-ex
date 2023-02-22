@@ -54,3 +54,9 @@ class Tag(db.Model):
     name = db.Column(db.Text, nullable=False)
 
 
+    posts = db.relationship(
+        'Post',
+        secondary="posts_tags",
+        # cascade="all,delete",
+        backref="tags",
+    )
